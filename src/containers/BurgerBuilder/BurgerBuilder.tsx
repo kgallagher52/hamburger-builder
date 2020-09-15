@@ -56,7 +56,7 @@ class BurgerBuilder extends Component {
         return (
             <>
                 <Burger ingredients={this.state.ingredients} />
-                <BuildControls ingredentRemoved={this.removeIngredientHandler} ingredentAdded={this.addIngredientHandler} />
+                <BuildControls price={this.state.totalPrice} ingredentRemoved={this.removeIngredientHandler} ingredentAdded={this.addIngredientHandler} />
             </>
         )
     }

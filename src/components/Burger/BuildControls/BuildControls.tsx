@@ -5,12 +5,14 @@ import './BuildControls.css'
 type Props = {
     ingredentAdded: any
     ingredentRemoved: any
+    price: number
 }
 // WIP: NEED THE RIGHT TYPE FOR ingredentAdded, ingredentRemoved
 
-const BuildControls = ({ ingredentAdded, ingredentRemoved }: Props) => {
+const BuildControls = ({ ingredentAdded, ingredentRemoved, price }: Props) => {
     return (
         <div className="BuildControls">
+            <p>Current Price: <strong>{price.toFixed(2)}</strong></p>
             {[
                 { label: 'Salad', type: 'salad' },
                 { label: 'Bacon', type: 'bacon' },
