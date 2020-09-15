@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Burger from '../../components/Burger/Burger'
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Modal from '../../components/UI/Modal/Modal';
 
 
 type Ingredients = "salad" | "bacon" | "cheese" | "meat";
@@ -15,12 +17,17 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
     state = {
         ingredients: {
-            salad: 1,
-            bacon: 3,
-            cheese: 2,
-            meat: 1
+            salad: 0,
+            bacon: 0,
+            cheese: 0,
+            meat: 0
         },
-        totalPrice: 4
+        totalPrice: 0,
+        purchasing: false
+    }
+
+    purchaseHandler = () => {
+        this.setState({ purchasing: !this.state.purchasing })
     }
 
     addIngredientHandler = (type: Ingredients) => {
@@ -55,8 +62,13 @@ class BurgerBuilder extends Component {
     render() {
         return (
             <>
+                {this.state.purchasing &&
+                    <Modal handleCheckout={this.purchaseHandler}>
+                        <OrderSummary ingredients={this.state.ingredients} />
+                    </Modal>
+                }
                 <Burger ingredients={this.state.ingredients} />
-                <BuildControls price={this.state.totalPrice} ingredentRemoved={this.removeIngredientHandler} ingredentAdded={this.addIngredientHandler} />
+                <BuildControls handleCheckout={this.purchaseHandler} puchasable={this.state.totalPrice > 0} price={this.state.totalPrice} ingredentRemoved={this.removeIngredientHandler} ingredentAdded={this.addIngredientHandler} />
             </>
         )
     }

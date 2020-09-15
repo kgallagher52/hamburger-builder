@@ -6,10 +6,13 @@ type Props = {
     ingredentAdded: any
     ingredentRemoved: any
     price: number
-}
-// WIP: NEED THE RIGHT TYPE FOR ingredentAdded, ingredentRemoved
+    puchasable: boolean
+    handleCheckout: any
 
-const BuildControls = ({ ingredentAdded, ingredentRemoved, price }: Props) => {
+}
+// WIP: NEED THE RIGHT TYPE FOR ingredentAdded, ingredentRemoved, handleCheckout
+
+const BuildControls = ({ handleCheckout, puchasable, ingredentAdded, ingredentRemoved, price }: Props) => {
     return (
         <div className="BuildControls">
             <p>Current Price: <strong>{price.toFixed(2)}</strong></p>
@@ -23,6 +26,7 @@ const BuildControls = ({ ingredentAdded, ingredentRemoved, price }: Props) => {
             ))
 
             }
+            <button onClick={handleCheckout} disabled={!puchasable} className="OrderButton">ORDER NOW</button>
         </div>
     )
 }
