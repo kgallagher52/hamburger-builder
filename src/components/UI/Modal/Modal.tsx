@@ -1,17 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Modal.css'
 
 
 // WIP get actual type
-const Modal = (props: any) => {
-    return (
-        <>
-            <div className="Modal">
-                {props.children}
-            </div>
-            <div onClick={props.handleCheckout} className="backdrop" />
-        </>
-    )
+class Modal extends Component<any, any> {
+
+    shouldComponentUpdate(nextProps: any, nextState: any) {
+        return nextProps.show !== this.props.show || nextProps.children !== this.props.children
+    }
+
+    componentWillUpdate() {
+        console.log(`[Modal] WillUpdate`);
+    }
+
+    render() {
+        return (
+            <>
+                <div className="Modal">
+                    {this.props.children}
+                </div>
+                <div onClick={this.props.handleCheckout} className="backdrop" />
+            </>
+        )
+    }
 }
 
 export default Modal
