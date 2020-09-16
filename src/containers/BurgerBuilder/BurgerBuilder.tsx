@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Burger from '../../components/Burger/Burger'
-import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import Modal from '../../components/UI/Modal/Modal';
-
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
+import Modal from '../../components/UI/Modal/Modal'
+import AxiosOrderInstance from '../../axios-orders'
 
 type Ingredients = "salad" | "bacon" | "cheese" | "meat";
 
@@ -31,7 +31,25 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        alert("CONTINUE")
+        //.json is a firebase syntax
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice,
+            customer: {
+                name: "Keaton Gallagher",
+                address: {
+                    street: "test",
+                    zipCode: "84058",
+                    country: 'United States'
+                },
+                email: "test@test.com"
+            }
+        }
+        AxiosOrderInstance.post('/orders.json', order).then(res => {
+            console.log(res);
+        }).catch(error => {
+            console.log(error);
+        })
     }
 
     addIngredientHandler = (type: Ingredients) => {
