@@ -10,10 +10,15 @@ const initialState = {
 const ingredientsReducer = (state = initialState, action) => {
     switch (action.type) {
         case at.SET_INGRIDENTS_PRICES: return updateObject(state, { ingredientPrices: action.value })
-        case at.SET_TOTAL_PRICE:
+        case at.ADD_TOTAL:
             return {
                 ...state,
-                totalPrice: action.value
+                totalPrice: state.totalPrice + action.VALUE
+            }
+        case at.SUB_TOTAL:
+            return {
+                ...state,
+                totalPrice: state.totalPrice - action.VALUE
             }
         default: return state
     }

@@ -53,7 +53,8 @@ class BurgerBuilder extends Component {
                     <BuildControls
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientRemove}
-                        setTotal={this.props.onSetTotalPrice}
+                        addTotal={this.props.onAddTotal}
+                        subTotal={this.props.onSubTotal}
                         ordered={this.purchaseHandler}
                         purchasable={this.props.total <= 0}
                         totalPrice={this.props.total}
@@ -96,7 +97,8 @@ const mapDispatchToProps = dispatch => {
         onSetIngredients: () => dispatch(ac.setIngredients()),
         onIngredientAdded: (ingName) => dispatch(ac.addIngredient(ingName)),
         onIngredientRemove: (ingName) => dispatch(ac.removeIngredient(ingName)),
-        onSetTotalPrice: (price) => dispatch(ac.handleTotalPrice(price)),
+        onAddTotal: (price) => dispatch(ac.handleAddTotal(price)),
+        onSubTotal: (price) => dispatch(ac.handleSubTotal(price)),
         onSetIngredientsPrices: () => dispatch(ac.setPrices()),
 
     }

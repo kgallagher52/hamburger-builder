@@ -17,8 +17,8 @@ const buildControls = (props) => (
             <BuildControl
                 key={ctrl.label}
                 label={ctrl.label}
-                added={() => { props.setTotal(props.prices[ctrl.type] + props.totalPrice); props.ingredientAdded(ctrl.type) }}
-                removed={() => { props.setTotal(props.totalPrice > 0 ? props.prices[ctrl.type] - props.totalPrice : 0); props.ingredientRemoved(ctrl.type) }}
+                added={() => { props.addTotal(props.prices[ctrl.type]); props.ingredientAdded(ctrl.type) }}
+                removed={() => { props.subTotal(props.prices[ctrl.type]); props.ingredientRemoved(ctrl.type) }}
                 disabled={props.disabled[ctrl.type]}
             />
         ))}

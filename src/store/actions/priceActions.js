@@ -12,9 +12,15 @@ export const setPrices = () => {
             });
     }
 }
-export const handleTotalPrice = (payload) => {
+export const handleAddTotal = (payload) => {
     return {
-        type: at.SET_TOTAL_PRICE,
+        type: at.ADD_TOTAL,
+        value: payload
+    }
+}
+export const handleSubTotal = (payload) => {
+    return {
+        type: at.SUB_TOTAL,
         value: payload
     }
 }
