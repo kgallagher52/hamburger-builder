@@ -1,19 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import ingredientsReducer from './store/reducers/ingredientsReducer'
+import thunk from 'redux-thunk';
+import ingredientReducer from './store/reducers/ingredientReducer'
+import errorReducer from './store/reducers/errorReducer'
+import priceReducer from './store/reducers/priceReducer'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 
 const rootReducer = combineReducers({
-    ingReducer: ingredientsReducer
+    priceReducer: priceReducer,
+    ingredientReducer: ingredientReducer,
+    errorReducer: errorReducer
 })
 
-const store = createStore(rootReducer)
+// Came from https://github.com/zalmoxisus/redux-devtools-extension
+const compseEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
+const store = createStore(rootReducer, compseEnhancers(applyMiddleware(thunk)))
 
 const app = (
     <Provider store={store}>

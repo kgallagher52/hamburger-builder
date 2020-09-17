@@ -32,7 +32,7 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingReducer.ingredients,
+        ings: state.reducer.ingredients,
     }
 }
 
